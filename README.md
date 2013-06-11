@@ -12,4 +12,4 @@ Takes 3 required parameters
 This script is written to handle multiple records returned from the query.  In turn the alert will
 fire off if any zones key expiration expire within the waring and critical threshold.
 
-The DNs server is hardcoded to 8.8.8.8 <thx google> or you can specify via --nsrv/-n 
+The nameserver is hardcode for ease and I'm lazy

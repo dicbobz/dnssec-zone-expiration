@@ -3,24 +3,19 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-import dns.flags
-import dns.resolver
-import dns.rdatatype
-import dns.rdataclass
-import argparse
-import datetime, time
-import sys
+import dns.flags, dns.resolver, dns.rdatatype, dns.rdataclass
+import argparse, datetime, time, sys
+from netaddr import *
 #setup argparse
 parser = argparse.ArgumentParser(description="Command Line Arguments go here")
 parser.add_argument('--domain','-d', action='store', type=str, nargs=1, required=True, help='The domain of the record you wish to query')
 parser.add_argument('--warn','-w', action='store', type=int, nargs=1, required=True, help='Number of days to warn')
 parser.add_argument('--crit','-c', action='store', type=int, nargs=1, required=True, help='Number of days to critical')
-parser.add_argument('--nsrv','-d', action='store', nargs=1, required=False, help='Optional NS Server', default=[8.8.8.8])
+#Parameters
 args = parser.parse_args()
 wt = args.warn[0]
 ct = args.crit[0]
-name_server = args.nsrv[0]
-#Parameters
+name_server = '8.8.8.8'
 domain_name = dns.name.from_text(args.domain[0]) #Take from argument
 crit = 0
 warn = 0

@@ -7,7 +7,7 @@ import dns.flags, dns.resolver, dns.rdatatype, dns.rdataclass
 import argparse, datetime, time, sys
 from netaddr import *
 #setup argparse
-parser = argparse.ArgumentParser(description="Command Line Arguments go here")
+parser = argparse.ArgumentParser(description="check zone key expiration")
 parser.add_argument('--domain','-d', action='store', type=str, nargs=1, required=True, help='The domain of the record you wish to query')
 parser.add_argument('--warn','-w', action='store', type=int, nargs=1, required=True, help='Number of days to warn')
 parser.add_argument('--crit','-c', action='store', type=int, nargs=1, required=True, help='Number of days to critical')
@@ -53,6 +53,7 @@ def comp_days(date):
 	return days
 
 def set_status(days):
+#Keep a counter of warn and crit states to pass to nagios
 	global crit,warn,ok
 	if int(days) <= ct:
 		crit = crit + 1

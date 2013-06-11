@@ -15,7 +15,7 @@ parser = argparse.ArgumentParser(description="Command Line Arguments go here")
 parser.add_argument('--domain','-d', action='store', type=str, nargs=1, required=True, help='The domain of the record you wish to query')
 parser.add_argument('--warn','-w', action='store', type=int, nargs=1, required=True, help='Number of days to warn')
 parser.add_argument('--crit','-c', action='store', type=int, nargs=1, required=True, help='Number of days to critical')
-parser.add_argument('--nsrv','-d', action='store', nargs=1, required=False, help='Optional NS Server', default=8.8.8.8)
+parser.add_argument('--nsrv','-d', action='store', nargs=1, required=False, help='Optional NS Server', default=[8.8.8.8])
 args = parser.parse_args()
 wt = args.warn[0]
 ct = args.crit[0]

@@ -13,13 +13,14 @@ import sys
 #setup argparse
 parser = argparse.ArgumentParser(description="Command Line Arguments go here")
 parser.add_argument('--domain','-d', action='store', type=str, nargs=1, required=True, help='The domain of the record you wish to query')
-parser.add_argument('--warn','-w', action='store', type=int, nargs=1, required=False, help='Number of days to warn')
-parser.add_argument('--crit','-c', action='store', type=int, nargs=1, required=False, help='Number of days to critical')
+parser.add_argument('--warn','-w', action='store', type=int, nargs=1, required=True, help='Number of days to warn')
+parser.add_argument('--crit','-c', action='store', type=int, nargs=1, required=True, help='Number of days to critical')
+parser.add_argument('--nsrv','-d', action='store', nargs=1, required=False, help='Optional NS Server', default=8.8.8.8)
 args = parser.parse_args()
 wt = args.warn[0]
 ct = args.crit[0]
+name_server = args.nsrv[0]
 #Parameters
-name_server = '63.245.215.5' #specify a dnsserver
 domain_name = dns.name.from_text(args.domain[0]) #Take from argument
 crit = 0
 warn = 0
